@@ -28,12 +28,11 @@ def dicts_to_list(char_dict):
     list_of_dicts.sort(reverse=True, key=sort_on)
     return list_of_dicts
 
-def display_report(word_count, dicts, book_path):
-    list_of_dicts = dicts_to_list(dicts)
+def display_report(word_count, sorted_char_count, book_path):
     
     print(f"--- Begin report of {book_path} ---")
     print(f"{word_count} words found in the document")
-    for d in list_of_dicts:
+    for d in sorted_char_count:
         temp_char = d["char"]
         temp_count = d["count"]
         print(f"The '{temp_char}' character was found {temp_count} times")
@@ -51,7 +50,9 @@ def main():
 
     character_count = get_character_count(text)
 
-    display_report(word_count, character_count, book_path)
+    sorted_character_count = dicts_to_list(character_count)
+
+    display_report(word_count,sorted_character_count, book_path)
 
 
 main()
